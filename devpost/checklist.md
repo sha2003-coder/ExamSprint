@@ -9,7 +9,7 @@ Build mode: learn
 
 ## Slices
 
-- [ ] **1. Bootstrap app with live priority scoring queue**
+- [x] **1. Bootstrap app with live priority scoring queue**
   Becomes usable: A running Vite + React app styled with the dark theme where a student can enter a course, topic, exam date, and confidence level, and immediately see the topic rendered in the study queue with its calculated Priority Score (10–95), color badge (HIGH/MEDIUM/LOW), and plain-English explanation.
   Why now: Delivers the core signature kernel and bootstraps the working Vite + React application on the very first step, proving the core value immediately.
   PRD ref: `prd.md > The Core Journey` (steps 1–4), `prd.md > Features and Behavior (1. Topic Creation and Form Validation & 2. Dynamic Priority Engine & Live Queueing)`
@@ -51,7 +51,7 @@ Build mode: learn
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — Slice 1 (Bootstrap & priority queue)
+- [x] Early usable behavior explored — Slice 1 (Bootstrap & priority queue)
 - [ ] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
