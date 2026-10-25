@@ -2,7 +2,7 @@ import React from 'react';
 import TopicCard from './TopicCard';
 import { calculatePriority } from '../utils/priorityEngine';
 
-export default function StudyQueue({ topics, onUpdateConfidence, onComplete }) {
+export default function StudyQueue({ topics, onUpdateConfidence, onComplete, onEdit, onDelete }) {
   const activeTopics = topics.filter((t) => !t.completed);
 
   // Sort descending by priority score (highest score first)
@@ -39,6 +39,8 @@ export default function StudyQueue({ topics, onUpdateConfidence, onComplete }) {
               topic={topic}
               onUpdateConfidence={onUpdateConfidence}
               onComplete={onComplete}
+              onEdit={onEdit}
+              onDelete={onDelete}
             />
           ))}
         </div>

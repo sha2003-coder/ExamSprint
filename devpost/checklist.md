@@ -19,7 +19,7 @@ Build mode: learn
   Learner check: Open http://localhost:5173, enter your first exam topic with 1 day remaining and Low confidence, and verify it renders with score 95/100 and a Red HIGH badge.
   Commit: `Bootstrap app with live priority scoring queue`
 
-- [ ] **2. Add in-place confidence updates and form validation guardrails**
+- [x] **2. Add in-place confidence updates and form validation guardrails**
   Becomes usable: Students can change confidence directly on an active topic card to see the score recalculate and the queue re-sort immediately; the form actively validates required fields, trims whitespace, and rejects past exam dates with clear inline error messages while accepting today's date.
   Why now: Solves the primary interaction and edge case risks before adding secondary dashboard panels.
   PRD ref: `prd.md > Features and Behavior (1. Form Validation & 3. In-Place Card Actions)`, `prd.md > States and Boundaries (Inline Error State)`
