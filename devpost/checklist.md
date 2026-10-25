@@ -29,7 +29,7 @@ Build mode: learn
   Learner check: Try submitting a blank form to see the inline error message, pick a past date to confirm rejection, and change a topic's confidence from Low to High on its card to watch the score drop and card move down.
   Commit: `Add in-place confidence updates and form validation`
 
-- [ ] **3. Add completed archive with undo and delete confirmation modal**
+- [x] **3. Add completed archive with undo and delete confirmation modal**
   Becomes usable: Students can check off topics to move them into a collapsible "Completed Topics" archive with strikethrough styling; click "Undo" to restore them to the active queue; and edit topics or delete them safely with a confirmation dialog.
   Why now: Completes the full topic lifecycle so students have total control over their sprint tasks.
   PRD ref: `prd.md > Features and Behavior (3. In-Place Card Actions & Deleting & 4. Completed Topics Archive)`

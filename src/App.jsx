@@ -1,17 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Navbar from './components/Navbar';
+import SummaryCards from './components/SummaryCards';
 import TopicForm from './components/TopicForm';
 import StudyQueue from './components/StudyQueue';
 import CompletedArchive from './components/CompletedArchive';
 import ConfirmModal from './components/ConfirmModal';
 
+const STORAGE_KEY = 'examsprint_topics';
+
 export default function App() {
-  const [topics, setTopics] = useState([]);
+  // 1. Initialize state from localStorage with safe try/catch fallback
+  const [topics, setTopics] = useState(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (err) {
+      console.warn('Could not load topics from localStorage:', err);
+    }
+    return [];
+  });
+
   const [editingTopic, setEditingTopic] = useState(null);
   const [topicToDelete, setTopicToDelete] = useState(null);
 
+  // 2. Sync topics array to localStorage on any change
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(topics));
+    } catch (err) {
+      console.error('Failed to save topics to localStorage:', err);
+    }
+  }, [topics]);
+
   const handleAddTopic = (newTopicData) => {
     const newTopic = {
-      id: `topic_${Date.now()}`,
+      id: `topic_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
       ...newTopicData,
       completed: false,
       createdAt: Date.now()
@@ -70,18 +96,9 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <header className="app-header">
-        <div className="brand-title">
-          <span className="brand-icon">⚡</span>
-          <div>
-            <h1 className="brand-name">ExamSprint</h1>
-            <p className="brand-tagline">Smart Study Revision Planner for University Students</p>
-          </div>
-        </div>
-        <div className="header-badge">
-          Sprint Study Engine
-        </div>
-      </header>
+      <Navbar />
+
+      <SummaryCards topics={topics} />
 
       <main className="dashboard-grid">
         <aside className="left-panel">
