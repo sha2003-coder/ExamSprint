@@ -2,6 +2,8 @@
 
 > **A smart, urgency-and-confidence-driven study revision planner for university students.**
 
+🔗 **Live Website:** [https://sha2003-coder.github.io/ExamSprint/](https://sha2003-coder.github.io/ExamSprint/)
+
 ExamSprint eliminates exam-season decision paralysis. Instead of maintaining a flat, static to-do list that treats every task equally, ExamSprint dynamically scores and re-ranks your study topics based on **exam proximity** and your self-rated **confidence level**.
 
 ---
