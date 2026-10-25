@@ -39,7 +39,7 @@ Build mode: learn
   Learner check: Mark a topic completed to see it enter the collapsible archive, click Undo to restore it, and test deleting a topic to verify the confirmation prompt.
   Commit: `Add completed archive with undo and delete confirmation modal`
 
-- [ ] **4. Add summary metrics, empty state, and localStorage persistence**
+- [x] **4. Add summary metrics, empty state, and localStorage persistence**
   Becomes usable: Top dashboard displays 4 live metric counters (Total Subjects, Total Topics, High Priority Topics, Completed Topics); empty queue displays welcoming guidance; all topics, completions, and edits persist automatically across browser reloads via `localStorage`.
   Why now: Integrates the full single-page dashboard experience and ensures student data survives page refreshes.
   PRD ref: `prd.md > Screens and Layout (Dashboard Metric Cards & Navbar)`, `prd.md > States and Boundaries (First-Use / Empty State)`
@@ -52,23 +52,24 @@ Build mode: learn
 ## Hands-on Checkpoints
 
 - [x] Early usable behavior explored — Slice 1 (Bootstrap & priority queue)
-- [ ] Final kick-the-tires exploration and feedback completed
+- [x] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: 
-Route and stops: 
-Edit outcome: 
-Reflection: 
-Activity mode: 
+Activity and evidence: 40-test automated verification suite (`tests/verify_all.mjs`) and clean production build (`npm run build`) verified pure date calculations, 65/45/25/10 urgency and 30/15/0 confidence point weights, queue auto-ranking, in-place confidence recalculation, complete & undo lifecycle, summary metric cards, and localStorage serialization.
+Route and stops: `src/components/TopicForm.jsx` (form validation & past-date defense) -> `src/utils/priorityEngine.js` (pure mathematical scoring & plain-English reasons) -> `src/App.jsx` (reactive state management & localStorage persistence).
+Edit outcome: Verified all 10 feature requirements in browser and test suite with zero remaining defects.
+Reflection: Documented reusable engineering takeaway: isolating business domain rules into pure JavaScript helper files enables 100% automated test coverage without needing DOM/browser mocks.
+Activity mode: live app and editor
 
 ## Revisions
+
 
