@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExamSprint — Technical Specification Companion</title>
+  <style>
+    :root {
+      --bg: #090e1a;
+      --card-bg: #1e293b;
+      --card-inner: #0f172a;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #818cf8;
+      --accent-cyan: #38bdf8;
+      --border: #334155;
+      --code-bg: #030712;
+      --tag-green: #34d399;
+      --tag-amber: #fbbf24;
+      --tag-red: #f87171;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(129, 140, 248, 0.2);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #a5b4fc, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #f1f5f9;
+    }
+
+    /* Diagram */
+    .diagram-wrapper {
+      background: #040711;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    svg.arch-svg {
+      width: 100%;
+      max-width: 860px;
+      height: auto;
+    }
+
+    /* Accordions */
+    .accordion-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      padding: 1rem;
+      background: #141f33;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+
+    .accordion-header:hover {
+      background: #1d2c47;
+    }
+
+    .accordion-body {
+      padding: 1.25rem;
+      background: var(--card-inner);
+      display: none;
+    }
+
+    .accordion-body.active {
+      display: block;
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      font-size: 0.88rem;
+      color: #e2e8f0;
+    }
+
+    .formula-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    .formula-table th, .formula-table td {
+      border: 1px solid var(--border);
+      padding: 0.65rem 1rem;
+      text-align: left;
+    }
+
+    .formula-table th {
+      background: #0e1726;
+      color: var(--accent-cyan);
+    }
+
+    .formula-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Devpost Learn Technical Blueprint Companion</div>
+      <h1>ExamSprint — Technical Specification</h1>
+      <p class="subtitle">Architecture, component tree, dynamic priority algorithm, and local state flow for Vite + React.</p>
+    </header>
+
+    <!-- Architecture & Data Flow SVG Diagram -->
+    <div class="card">
+      <h2>📐 System Architecture & Data Flow</h2>
+      <div class="diagram-wrapper">
+        <svg class="arch-svg" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+          <!-- App Root -->
+          <rect x="290" y="20" width="280" height="60" rx="8" fill="#1e293b" stroke="#818cf8" stroke-width="2"/>
+          <text x="430" y="45" fill="#a5b4fc" font-size="13" font-weight="bold" text-anchor="middle">App.jsx (Root State)</text>
+          <text x="430" y="65" fill="#94a3b8" font-size="11" text-anchor="middle">topics [ ] + editTopic + localStorage</text>
+
+          <!-- Storage Connection -->
+          <rect x="670" y="20" width="160" height="60" rx="8" fill="#0f172a" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4"/>
+          <text x="750" y="45" fill="#6ee7b7" font-size="12" font-weight="bold" text-anchor="middle">Browser Storage</text>
+          <text x="750" y="63" fill="#94a3b8" font-size="10" text-anchor="middle">localStorage sync</text>
+          <path d="M 570 50 L 670 50" stroke="#34d399" stroke-width="2" stroke-dasharray="3" marker-end="url(#arrow)"/>
+
+          <!-- Downward branch arrows -->
+          <path d="M 340 80 L 130 140" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+          <path d="M 430 80 L 430 140" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+          <path d="M 520 80 L 730 140" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Component Left: TopicForm -->
+          <rect x="30" y="140" width="200" height="85" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+          <text x="130" y="165" fill="#7dd3fc" font-size="13" font-weight="bold" text-anchor="middle">TopicForm.jsx</text>
+          <text x="130" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle">Inline Validation</text>
+          <text x="130" y="205" fill="#94a3b8" font-size="10" text-anchor="middle">onAdd / onUpdate</text>
+
+          <!-- Component Center: StudyQueue -->
+          <rect x="330" y="140" width="200" height="85" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+          <text x="430" y="165" fill="#fcd34d" font-size="13" font-weight="bold" text-anchor="middle">StudyQueue.jsx</text>
+          <text x="430" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle">TopicCard.jsx list</text>
+          <text x="430" y="205" fill="#94a3b8" font-size="10" text-anchor="middle">In-place Confidence</text>
+
+          <!-- Component Right: Completed Archive -->
+          <rect x="630" y="140" width="200" height="85" rx="8" fill="#1e293b" stroke="#c084fc" stroke-width="2"/>
+          <text x="730" y="165" fill="#e9d5ff" font-size="13" font-weight="bold" text-anchor="middle">CompletedArchive.jsx</text>
+          <text x="730" y="185" fill="#cbd5e1" font-size="11" text-anchor="middle">Collapsible Drawer</text>
+          <text x="730" y="205" fill="#94a3b8" font-size="10" text-anchor="middle">Undo & Delete</text>
+
+          <!-- Utility Link: priorityEngine -->
+          <path d="M 230 180 L 330 180" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2"/>
+          <rect x="235" y="210" width="180" height="40" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="325" y="235" fill="#fde68a" font-size="11" font-weight="bold" text-anchor="middle">utils/priorityEngine.js</text>
+          <path d="M 400 210 L 400 190" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Algorithm Breakdown -->
+    <div class="card">
+      <h2>⚡ Dynamic Priority Score Formula</h2>
+      <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Pure JavaScript formula calculating score from 10 to 95:</p>
+      
+      <table class="formula-table">
+        <thead>
+          <tr>
+            <th>Factor</th>
+            <th>Condition</th>
+            <th>Points Awarded</th>
+            <th>Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="4"><strong>Urgency Points</strong><br>(Max 65)</td>
+            <td>0 to 2 days left</td>
+            <td><strong>65 pts</strong></td>
+            <td>Imminent exam — highest urgency</td>
+          </tr>
+          <tr>
+            <td>3 to 7 days left</td>
+            <td><strong>45 pts</strong></td>
+            <td>Exam this week</td>
+          </tr>
+          <tr>
+            <td>8 to 14 days left</td>
+            <td><strong>25 pts</strong></td>
+            <td>Exam next week</td>
+          </tr>
+          <tr>
+            <td>15+ days left</td>
+            <td><strong>10 pts</strong></td>
+            <td>Upcoming with comfortable buffer</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>Confidence Points</strong><br>(Max 30)</td>
+            <td>Low Confidence</td>
+            <td><strong>30 pts</strong></td>
+            <td>Struggling; needs urgent revision</td>
+          </tr>
+          <tr>
+            <td>Medium Confidence</td>
+            <td><strong>15 pts</strong></td>
+            <td>Understands basics; needs practice</td>
+          </tr>
+          <tr>
+            <td>High Confidence</td>
+            <td><strong>0 pts</strong></td>
+            <td>Prepared; low revision urgency</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Accordion Sections -->
+    <div class="card">
+      <h2>📂 Technical Blueprint Modules</h2>
+      
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><strong>Component Hierarchy (7 Components + 1 Utility)</strong></span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body active">
+          <ul>
+            <li><strong><code>App.jsx</code>:</strong> Central state manager, localStorage sync, modal controller.</li>
+            <li><strong><code>Navbar.jsx</code>:</strong> ExamSprint header, logo, and subtitle.</li>
+            <li><strong><code>SummaryCards.jsx</code>:</strong> 4 metric cards (Total Subjects, Total Topics, High Priority Topics, Completed Topics).</li>
+            <li><strong><code>TopicForm.jsx</code>:</strong> Form with inline validation (empty check, past-date prevention).</li>
+            <li><strong><code>StudyQueue.jsx</code>:</strong> Sorted priority list with empty state fallback.</li>
+            <li><strong><code>TopicCard.jsx</code>:</strong> Topic item with score badge, in-place confidence selector, and action buttons.</li>
+            <li><strong><code>CompletedArchive.jsx</code>:</strong> Collapsible drawer for completed topics with Undo button.</li>
+            <li><strong><code>ConfirmModal.jsx</code>:</strong> Delete confirmation dialog.</li>
+            <li><strong><code>priorityEngine.js</code>:</strong> Pure JS date diff and scoring algorithm.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><strong>File Structure & Run Instructions</strong></span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <pre>
+# Start development server
+npm install
+npm run dev
+
+# Opens locally at
+http://localhost:5173
+          </pre>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><strong>Testing & Verification Checklist (10 Criteria)</strong></span>
+          <span>▼</span>
+        </div>
+        <div class="accordion-body">
+          <ol style="margin-left: 1.5rem; color: #cbd5e1;">
+            <li style="margin-bottom: 0.4rem;"><strong>Empty State:</strong> 4 metric cards start at 0, welcoming prompt displayed.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Input Validation:</strong> Rejects blank inputs with inline errors, blocks past dates, accepts today.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Scoring Math:</strong> Urgency (65/45/25/10) + Confidence (30/15/0) accurately totals 10–95.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Auto-Sorting:</strong> Queue renders cards sorted strictly descending by Priority Score.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>In-Place Updates:</strong> Toggling card confidence recalculates score and moves card immediately.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Editing:</strong> Modify topic, subject, or date smoothly via Edit action.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Delete Confirmation:</strong> Confirm modal prevents accidental deletion; Cancel retains card.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Archive & Undo:</strong> Completed topics move to collapsible archive; Undo restores to active queue.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Past Due Handling:</strong> Previously saved cards with expired dates display "PAST DUE" warning badge.</li>
+            <li style="margin-bottom: 0.4rem;"><strong>Persistence & Responsive:</strong> Survives browser reload (F5) via localStorage; responsive desktop & mobile.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleAccordion(header) {
+      const body = header.nextElementSibling;
+      body.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

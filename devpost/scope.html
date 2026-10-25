@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ExamSprint — Project Scope Companion</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+      --success: #34d399;
+      --warning: #fbbf24;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #e2e8f0;
+    }
+
+    /* Diagram */
+    .diagram-container {
+      background: #090d16;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      border: 1px solid #1e293b;
+    }
+
+    svg.flow-diagram {
+      width: 100%;
+      max-width: 760px;
+      height: auto;
+    }
+
+    /* Toggles & Accordions */
+    .boundary-section {
+      margin-top: 1rem;
+    }
+
+    .boundary-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+
+    .boundary-header {
+      padding: 1rem;
+      background: #141e33;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .boundary-header:hover {
+      background: #1c2b48;
+    }
+
+    .boundary-content {
+      padding: 1rem;
+      background: var(--card-bg);
+      display: none;
+    }
+
+    .boundary-content.active {
+      display: block;
+    }
+
+    .tag-now { color: var(--success); }
+    .tag-later { color: var(--warning); }
+    .tag-cut { color: #f87171; }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
+    }
+
+    .score-formula-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      font-family: monospace;
+      color: #e0f2fe;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">Devpost Learn Scope Companion</div>
+      <h1>ExamSprint</h1>
+      <p class="subtitle">A smart, urgency-and-confidence-driven study revision planner for university students.</p>
+    </header>
+
+    <!-- Kernel Card -->
+    <div class="card">
+      <h2>⚡ The Unique Kernel</h2>
+      <p>A deterministic, client-side JavaScript priority engine that weighs <strong>days until exam</strong> against <strong>student confidence level</strong> to answer the critical question: <em>"What should I study right now?"</em></p>
+      <div class="score-formula-box">
+        Priority Score = f(Exam Days Remaining, Confidence [Low | Medium | High]) + Plain-English Reasoning
+      </div>
+    </div>
+
+    <!-- Core Loop Flow Diagram -->
+    <div class="card">
+      <h2>🔄 The User & Core Loop Flow</h2>
+      <div class="diagram-container">
+        <svg class="flow-diagram" viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- User / Need -->
+          <rect x="10" y="50" width="160" height="80" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+          <text x="90" y="85" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">Student</text>
+          <text x="90" y="105" fill="#94a3b8" font-size="11" text-anchor="middle">Multi-exam stress</text>
+
+          <!-- Arrow 1 -->
+          <path d="M 170 90 L 210 90" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Step 1: Input -->
+          <rect x="210" y="50" width="160" height="80" rx="8" fill="#1e293b" stroke="#818cf8" stroke-width="2"/>
+          <text x="290" y="85" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">Add Subjects</text>
+          <text x="290" y="105" fill="#94a3b8" font-size="11" text-anchor="middle">Date + Confidence</text>
+
+          <!-- Arrow 2 -->
+          <path d="M 370 90 L 410 90" stroke="#818cf8" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Step 2: Scoring Engine -->
+          <rect x="410" y="50" width="160" height="80" rx="8" fill="#1e293b" stroke="#34d399" stroke-width="2"/>
+          <text x="490" y="85" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">Priority Queue</text>
+          <text x="490" y="105" fill="#94a3b8" font-size="11" text-anchor="middle">Score + Plain Reason</text>
+
+          <!-- Arrow 3 -->
+          <path d="M 570 90 L 610 90" stroke="#34d399" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Step 3: Action -->
+          <rect x="610" y="50" width="140" height="80" rx="8" fill="#1e293b" stroke="#fbbf24" stroke-width="2"/>
+          <text x="680" y="85" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle">Study & Check</text>
+          <text x="680" y="105" fill="#94a3b8" font-size="11" text-anchor="middle">Auto-recalculation</text>
+
+          <!-- Marker -->
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <!-- POC Boundaries (Interactive Reveal) -->
+    <div class="card">
+      <h2>🎯 Proof of Concept Boundary</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Click each boundary tier to review what belongs in this sprint:</p>
+      
+      <div class="boundary-section">
+        <div class="boundary-item">
+          <div class="boundary-header" onclick="toggleBoundary(this)">
+            <span><strong class="tag-now">● NOW (POC Core)</strong> — 2 to 4 hour target</span>
+            <span>▼</span>
+          </div>
+          <div class="boundary-content active">
+            <ul>
+              <li>Add course subjects and revision topics</li>
+              <li>Set exam dates and select student confidence (Low, Medium, High)</li>
+              <li>Client-side JavaScript priority scoring algorithm (instant calculation, zero API costs)</li>
+              <li>Display dynamically sorted revision queue with score badges and plain-language explanations</li>
+              <li>Instant recalculation upon changing confidence or exam dates</li>
+              <li>Mark topics completed to track sprint progress</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="boundary-item">
+          <div class="boundary-header" onclick="toggleBoundary(this)">
+            <span><strong class="tag-later">● LATER (Post-Hackathon)</strong></span>
+            <span>▼</span>
+          </div>
+          <div class="boundary-content">
+            <ul>
+              <li>Saving state in browser <code>localStorage</code> across page reloads</li>
+              <li>AI chatbot assistant for personalized topic explanations and flashcard drill</li>
+              <li>User accounts, login, and multi-device cloud synchronization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="boundary-item">
+          <div class="boundary-header" onclick="toggleBoundary(this)">
+            <span><strong class="tag-cut">● CUT (Explicitly Excluded)</strong></span>
+            <span>▼</span>
+          </div>
+          <div class="boundary-content">
+            <ul>
+              <li><strong>Email reminders & automated alerts:</strong> Cut to avoid background cron schedulers, external mailing services, and backend server complexity during this focused frontend proof of concept.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleBoundary(header) {
+      const content = header.nextElementSibling;
+      content.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
