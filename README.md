@@ -143,3 +143,15 @@ This project was built following the **Devpost Learn: Build With AI** plan-first
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## 🎬 Project Demo
+
+Watch the ExamSprint demonstration:
+
+
+
+[Watch Demo Video] (https://youtu.be/84w0epMjptM).
+
+## 🌐 Live Application
+
+[Open ExamSprint](https://sha2003-coder.github.io/ExamSprint/)
